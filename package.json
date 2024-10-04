@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "A RESTful API for managing gym memberships, gyms, and schedules, designed to integrate seamlessly with Gympass services.",
   "devDependencies": {
+    "@biomejs/biome": "1.9.3",
     "@types/node": "^22.7.4",
     "tsup": "^8.3.0",
     "tsx": "^4.19.1",
