@@ -7,24 +7,14 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": [
-			"node_modules",
-			".vscode",
-			".git",
-			"dist"
-		],
-		"include": [
-			"**/*.ts",
-			"**/*.json",
-			"**/*.md"
-		]
+		"ignore": ["node_modules", ".vscode", ".git", "dist"],
+		"include": ["**/*.ts", "**/*.json", "**/*.md", "**/*.mts", "**/*.yml"]
 	},
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab",
 		"bracketSpacing": true,
 		"lineWidth": 120,
-		"indentSize": 2,
 		"lineEnding": "lf"
 	},
 	"organizeImports": {
@@ -33,7 +23,10 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"style": {
+				"useImportType": "off"
+			}
 		}
 	},
 	"javascript": {
@@ -43,7 +36,8 @@
 			"quoteProperties": "asNeeded",
 			"semicolons": "always",
 			"trailingCommas": "all",
-			"enabled": true
+			"enabled": true,
+			"indentWidth": 2
 		}
 	}
 }

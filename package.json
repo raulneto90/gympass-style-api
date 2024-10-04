@@ -1,28 +1,32 @@
 {
-  "name": "gympass-style-api",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "dev": "tsx ./src/server.ts",
-    "build": "tsup src --out-dir dist",
-    "start": "node dist/server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "A RESTful API for managing gym memberships, gyms, and schedules, designed to integrate seamlessly with Gympass services.",
-  "devDependencies": {
-    "@biomejs/biome": "1.9.3",
-    "@types/node": "^22.7.4",
-    "tsup": "^8.3.0",
-    "tsx": "^4.19.1",
-    "typescript": "^5.6.2"
-  },
-  "dependencies": {
-    "@prisma/client": "^5.20.0",
-    "dotenv": "^16.4.5",
-    "fastify": "^5.0.0",
-    "prisma": "^5.20.0",
-    "zod": "^3.23.8"
-  }
+	"name": "gympass-style-api",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"dev": "tsx ./src/server.ts",
+		"build": "tsup src --out-dir dist",
+		"start": "node dist/server.js",
+		"test:dev": "vitest",
+		"test": "vitest run --silent",
+		"test:coverage": "vitest run --silent --coverage"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "A RESTful API for managing gym memberships, gyms, and schedules, designed to integrate seamlessly with Gympass services.",
+	"devDependencies": {
+		"@biomejs/biome": "1.9.3",
+		"@types/node": "^22.7.4",
+		"tsup": "^8.3.0",
+		"tsx": "^4.19.1",
+		"typescript": "^5.6.2",
+		"vitest": "^2.1.2"
+	},
+	"dependencies": {
+		"@prisma/client": "^5.20.0",
+		"dotenv": "^16.4.5",
+		"fastify": "^5.0.0",
+		"prisma": "^5.20.0",
+		"zod": "^3.23.8"
+	}
 }
