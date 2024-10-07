@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { User } from '../domain/entities/User';
-import { makeUser } from './fixtures/user';
+
+import { User } from '../../domain/entities/User';
+import { makeUser } from '../fixtures/user';
 
 describe('User', () => {
 	it('should create a new user using static method', () => {
@@ -26,7 +27,7 @@ describe('User', () => {
 		expect(user.id).toBe('1');
 		expect(user.name).toBe('John Doe');
 		expect(user.email).toBe('johndoe@example.com');
-		expect(user.password).toBe('password');
+		expect(user).toHaveProperty('password');
 		expect(user.createdAt).toBeInstanceOf(Date);
 		expect(user.createdAt).toBeInstanceOf(Date);
 	});

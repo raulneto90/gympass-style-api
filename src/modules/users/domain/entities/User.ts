@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { PasswordEncryptor } from '../../infraestructure/adapters/PasswordEncryptor';
 
 interface ConstructorParams {
 	id?: string;
@@ -27,8 +28,10 @@ export class User {
 	}
 
 	static create(data: ConstructorParams): User {
+		const passwordHash = PasswordEncryptor.encrypt(data.password);
 		return new User({
 			...data,
+			password: passwordHash,
 			createdAt: data.createdAt ?? new Date(),
 			updatedAt: data.updatedAt ?? new Date(),
 			id: data.id ?? randomUUID(),
