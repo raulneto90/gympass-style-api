@@ -7,7 +7,7 @@ export default defineConfig({
 	plugins: [tsconfigPaths()],
 	test: {
 		coverage: {
-			include: ['**/*.unit.test.ts', '**/*.integration.test.ts', '**/*.e2e.test.ts'],
+			include: ['src/**'],
 			reporter: ['lcov', 'text', 'text-summary'],
 		},
 	},
