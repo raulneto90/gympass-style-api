@@ -1,4 +1,4 @@
-import { EntityAlreadyExistsEror } from '@api/modules/common/errors/EntityAlreadyExistsError';
+import { EntityAlreadyExistsError } from '@api/modules/common/errors/EntityAlreadyExistsError';
 import { User } from '../../domain/entities/User';
 import { UsersRepository } from '../../domain/repositories/UsersRepository';
 import { UserDTO } from '../dtos/User.dto';
@@ -12,7 +12,7 @@ export class CreateUserUseCase {
 		const userAlreadyExists = await this.usersRepository.findByEmail(data.email);
 
 		if (userAlreadyExists) {
-			throw new EntityAlreadyExistsEror('User already exists');
+			throw new EntityAlreadyExistsError('User already exists');
 		}
 
 		const user = User.create(data);
