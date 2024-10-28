@@ -8,7 +8,7 @@
 		"start": "node dist/server.js",
 		"test:watch": "vitest",
 		"test": "vitest run --silent",
-		"test:coverage": "vitest run --silent --coverage"
+		"test:coverage": "vitest run --silent --coverage && open coverage/lcov-report/index.html"
 	},
 	"keywords": [],
 	"author": "",
