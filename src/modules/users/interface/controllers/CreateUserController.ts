@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { CreateUserUseCase } from '../../application/use-cases/CreateUserUseCase';
+import { CreateUserUseCase } from '../../application/useCases/CreateUserUseCase';
 import { PostgreUsersRepository } from '../../infraestructure/repositories/PostgreUsersRepository';
 import { createUserValidationSchema } from '../validations/CreateUserValidation';
 
