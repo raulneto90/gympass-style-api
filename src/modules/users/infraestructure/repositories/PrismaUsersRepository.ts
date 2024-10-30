@@ -32,4 +32,12 @@ export class PrismaUsersRepository implements UsersRepository {
 
 		return user ? UsersMapper.toDomain(user) : null;
 	}
+
+	async findById(id: string): Promise<User | null> {
+		const user = await this.repository.findUnique({
+			where: { id },
+		});
+
+		return user ? UsersMapper.toDomain(user) : null;
+	}
 }

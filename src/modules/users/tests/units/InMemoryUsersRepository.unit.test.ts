@@ -27,4 +27,14 @@ describe('InMemoryUsersRepository - Unit tests', () => {
 
 		expect(foundUser).toBe(user);
 	});
+
+	it('should find a user by id', async () => {
+		const user = User.create(makeUser());
+
+		await repository.create(user);
+
+		const foundUser = await repository.findById(user.id as string);
+
+		expect(foundUser).toBe(user);
+	});
 });

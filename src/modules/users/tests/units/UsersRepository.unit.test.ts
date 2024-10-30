@@ -40,4 +40,14 @@ describe('UsersRepository', () => {
 
 		expect(user).toEqual(userMock);
 	});
+
+	it('should find user by id', async () => {
+		const userMock = makeUser();
+
+		prisma.user.findUnique = vi.fn().mockResolvedValue(userMock);
+
+		const user = await usersRepository.findById(userMock.id);
+
+		expect(user).toEqual(userMock);
+	});
 });
