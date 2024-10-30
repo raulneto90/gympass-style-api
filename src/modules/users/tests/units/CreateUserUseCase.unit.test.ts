@@ -4,7 +4,7 @@ import { CreateUserUseCase } from '../../application/useCases/CreateUserUseCase'
 import { User } from '../../domain/entities/User';
 import { UsersRepository } from '../../domain/repositories/UsersRepository';
 import { PasswordEncryptor } from '../../infraestructure/adapters/PasswordEncryptor';
-import { PostgreUsersRepository } from '../../infraestructure/repositories/PostgreUsersRepository';
+import { PrismaUsersRepository } from '../../infraestructure/repositories/PrismaUsersRepository';
 import { makeUser } from '../fixtures/user';
 
 vi.mock('@api/common/config/prisma', () => ({
@@ -21,7 +21,7 @@ describe('CreateUserUseCase - Unit tests', () => {
 	let usersRepository: UsersRepository;
 
 	beforeEach(() => {
-		usersRepository = new PostgreUsersRepository();
+		usersRepository = new PrismaUsersRepository();
 		createUserUseCase = new CreateUserUseCase(usersRepository);
 	});
 

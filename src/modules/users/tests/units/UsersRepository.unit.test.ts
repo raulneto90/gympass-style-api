@@ -1,7 +1,7 @@
 import { prisma } from '@api/modules/common/config/prisma';
 import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { UsersRepository } from '../../domain/repositories/UsersRepository';
-import { PostgreUsersRepository } from '../../infraestructure/repositories/PostgreUsersRepository';
+import { PrismaUsersRepository } from '../../infraestructure/repositories/PrismaUsersRepository';
 import { makeUser } from '../fixtures/user';
 
 vi.mock('@api/common/config/prisma', () => ({
@@ -17,7 +17,7 @@ describe('UsersRepository', () => {
 	let usersRepository: UsersRepository;
 
 	beforeEach(() => {
-		usersRepository = new PostgreUsersRepository();
+		usersRepository = new PrismaUsersRepository();
 	});
 
 	it('should create new user', async () => {

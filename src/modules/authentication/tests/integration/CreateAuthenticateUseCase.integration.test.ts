@@ -5,15 +5,15 @@ import { InvalidCredentialsError } from '@api/modules/common/errors/InvalidCrede
 import { PasswordEncryptor } from '@api/modules/users/infraestructure/adapters/PasswordEncryptor';
 import { makeUser } from '@api/modules/users/tests/fixtures/user';
 import { beforeEach, describe, expect, it, vitest } from 'vitest';
-import { CreateAuthenticationUseCase } from '../../application/use-cases/CreateAuthenticationUseCase';
+import { AuthenticateUseCase } from '../../application/use-cases/AuthenticateUseCase';
 
 describe('CreateAuthenticationUseCase', () => {
-	let useCase: CreateAuthenticationUseCase;
+	let useCase: AuthenticateUseCase;
 	let repository: UsersRepository;
 
 	beforeEach(() => {
 		repository = new InMemoryUsersRepository();
-		useCase = new CreateAuthenticationUseCase(repository);
+		useCase = new AuthenticateUseCase(repository);
 	});
 
 	it('should create a new authentication', async () => {

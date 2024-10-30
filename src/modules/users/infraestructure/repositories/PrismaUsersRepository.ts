@@ -6,7 +6,7 @@ import { User } from '../../domain/entities/User';
 import { UsersRepository } from '../../domain/repositories/UsersRepository';
 import { UsersMapper } from '../mappers/UsersMapper';
 
-export class PostgreUsersRepository implements UsersRepository {
+export class PrismaUsersRepository implements UsersRepository {
 	private repository: Prisma.UserDelegate;
 
 	constructor() {

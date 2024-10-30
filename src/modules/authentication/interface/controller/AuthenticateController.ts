@@ -1,18 +1,16 @@
-import { PostgreUsersRepository } from '@api/modules/users/infraestructure/repositories/PostgreUsersRepository';
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { CreateAuthenticationUseCase } from '../../application/use-cases/CreateAuthenticationUseCase';
+import { makeAuthenticateUseCase } from '../../infraestructure/factories/make-authenticate-use-case';
 import { createUserAuthenticationValidation } from '../validations/createUserAuthenticationValidation';
 
-export class CreateUserAuthenticateController {
+export class AuthenticateController {
 	async handle(request: FastifyRequest, response: FastifyReply): Promise<FastifyReply> {
 		const body = createUserAuthenticationValidation.safeParse(request.body);
 
 		if (!body.success) {
-			return response.status(400).send(body.error);
+			return response.status(400).send(body.error.format());
 		}
 
-		const repository = new PostgreUsersRepository();
-		const createAuthenticationUseCase = new CreateAuthenticationUseCase(repository);
+		const createAuthenticationUseCase = makeAuthenticateUseCase();
 
 		const result = await createAuthenticationUseCase.execute(body.data);
 
