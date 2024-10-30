@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { CreateUserUseCase } from '../../application/useCases/CreateUserUseCase';
+import { CreateUserUseCase } from '../../application/use-cases/CreateUserUseCase';
 import { makeCreateUserUseCase } from '../../infraestructure/factories/make-create-user-use-case';
 import { PrismaUsersRepository } from '../../infraestructure/repositories/PrismaUsersRepository';
 import { createUserValidationSchema } from '../validations/CreateUserValidation';

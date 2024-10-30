@@ -3,7 +3,7 @@ import { UsersRepository } from '@api/modules/users/domain/repositories/UsersRep
 import { InMemoryUsersRepository } from '@api/modules/users/infraestructure/repositories/InMemoryUsersRepository';
 import { makeUser } from '@api/modules/users/tests/fixtures/user';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { GetUserProfileUseCase } from '../../application/useCases/GetUserProfileUseCase';
+import { GetUserProfileUseCase } from '../../application/use-cases/GetUserProfileUseCase';
 
 describe('GetUserProfileUseCase', () => {
 	let useCase: GetUserProfileUseCase;

@@ -1,4 +1,4 @@
-import { CreateUserUseCase } from '../../application/useCases/CreateUserUseCase';
+import { CreateUserUseCase } from '../../application/use-cases/CreateUserUseCase';
 import { PrismaUsersRepository } from '../repositories/PrismaUsersRepository';
 
 export function makeCreateUserUseCase(): CreateUserUseCase {
