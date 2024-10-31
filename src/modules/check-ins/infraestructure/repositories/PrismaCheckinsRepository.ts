@@ -21,4 +21,15 @@ export class PrismaCheckinsRepository implements CheckinsRepository {
 
 		return CheckinMapper.toDomain(checkin);
 	}
+
+	async findByIdAndDate(id: string, date: Date): Promise<Checkin | null> {
+		const checkin = await this.repository.findFirst({
+			where: {
+				userId: id,
+				createdAt: date,
+			},
+		});
+
+		return checkin ? CheckinMapper.toDomain(checkin) : null;
+	}
 }
