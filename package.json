@@ -10,6 +10,9 @@
 		"test": "vitest run --silent",
 		"test:coverage": "vitest run --silent --coverage && open coverage/lcov-report/index.html"
 	},
+	"engines": {
+		"node": "22"
+	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
