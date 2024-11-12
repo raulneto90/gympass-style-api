@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
-
-import { User } from '../../domain/entities/User';
-import { makeUser } from '../fixtures/user';
+import { User } from '../domain/entities/User';
+import { makeUser } from './fixtures/user';
 
 describe('User', () => {
 	it('should create a new user using static method', () => {

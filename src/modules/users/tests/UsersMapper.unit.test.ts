@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { UsersMapper } from '../../infraestructure/mappers/UsersMapper';
-import { makeUser } from '../fixtures/user';
+import { UsersMapper } from '../infraestructure/mappers/UsersMapper';
+import { makeUser } from './fixtures/user';
 
 describe('UsersMapper', () => {
 	it('should return a user domain object', () => {

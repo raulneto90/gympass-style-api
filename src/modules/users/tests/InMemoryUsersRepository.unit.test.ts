@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { User } from '../../domain/entities/User';
-import { InMemoryUsersRepository } from '../../infraestructure/repositories/InMemoryUsersRepository';
-import { makeUser } from '../fixtures/user';
+import { User } from '../domain/entities/User';
+import { InMemoryUsersRepository } from '../infraestructure/repositories/InMemoryUsersRepository';
+import { makeUser } from './fixtures/user';
 
 describe('InMemoryUsersRepository - Unit tests', () => {
 	let repository: InMemoryUsersRepository;

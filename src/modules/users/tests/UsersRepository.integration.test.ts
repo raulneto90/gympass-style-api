@@ -1,9 +1,9 @@
 import { prisma } from '@api/modules/common/config/prisma';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { User } from '../../domain/entities/User';
-import { UsersRepository } from '../../domain/repositories/UsersRepository';
-import { PrismaUsersRepository } from '../../infraestructure/repositories/PrismaUsersRepository';
-import { makeUser } from '../fixtures/user';
+import { User } from '../domain/entities/User';
+import { UsersRepository } from '../domain/repositories/UsersRepository';
+import { PrismaUsersRepository } from '../infraestructure/repositories/PrismaUsersRepository';
+import { makeUser } from './fixtures/user';
 
 describe('UsersRepository - Integration tests', () => {
 	let usersRepository: UsersRepository;

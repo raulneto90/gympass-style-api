@@ -1,8 +1,8 @@
 import { prisma } from '@api/modules/common/config/prisma';
-import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
-import { UsersRepository } from '../../domain/repositories/UsersRepository';
-import { PrismaUsersRepository } from '../../infraestructure/repositories/PrismaUsersRepository';
-import { makeUser } from '../fixtures/user';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { UsersRepository } from '../domain/repositories/UsersRepository';
+import { PrismaUsersRepository } from '../infraestructure/repositories/PrismaUsersRepository';
+import { makeUser } from './fixtures/user';
 
 vi.mock('@api/common/config/prisma', () => ({
 	prisma: {

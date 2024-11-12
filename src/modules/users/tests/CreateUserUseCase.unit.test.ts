@@ -1,11 +1,12 @@
 import { prisma } from '@api/modules/common/config/prisma';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { CreateUserUseCase } from '../../application/use-cases/CreateUserUseCase';
-import { User } from '../../domain/entities/User';
-import { UsersRepository } from '../../domain/repositories/UsersRepository';
-import { PasswordEncryptor } from '../../infraestructure/adapters/PasswordEncryptor';
-import { PrismaUsersRepository } from '../../infraestructure/repositories/PrismaUsersRepository';
-import { makeUser } from '../fixtures/user';
+
+import { CreateUserUseCase } from '../application/use-cases/CreateUserUseCase';
+import { User } from '../domain/entities/User';
+import { UsersRepository } from '../domain/repositories/UsersRepository';
+import { PasswordEncryptor } from '../infraestructure/adapters/PasswordEncryptor';
+import { PrismaUsersRepository } from '../infraestructure/repositories/PrismaUsersRepository';
+import { makeUser } from './fixtures/user';
 
 vi.mock('@api/common/config/prisma', () => ({
 	prisma: {

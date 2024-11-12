@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { PasswordEncryptor } from '../../infraestructure/adapters/PasswordEncryptor';
+import { PasswordEncryptor } from '../infraestructure/adapters/PasswordEncryptor';
 
 describe('PasswordEncryptor', () => {
 	it('should encrypt a password', () => {

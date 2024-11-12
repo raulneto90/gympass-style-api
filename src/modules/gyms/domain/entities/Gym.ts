@@ -3,8 +3,8 @@ import { randomUUID } from 'node:crypto';
 interface ConstructorParams {
 	id?: string;
 	title: string;
-	description: string;
-	phone: string;
+	description: string | null;
+	phone: string | null;
 	latitude: number;
 	longitude: number;
 }
@@ -12,8 +12,8 @@ interface ConstructorParams {
 export class Gym {
 	id?: string;
 	title: string;
-	description: string;
-	phone: string;
+	description: string | null;
+	phone: string | null;
 	latitude: number;
 	longitude: number;
 
