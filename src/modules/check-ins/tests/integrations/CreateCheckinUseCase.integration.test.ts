@@ -19,8 +19,8 @@ describe('CreateCheckinUseCase', () => {
 		await gymsRepository.create({
 			id: '1',
 			title: 'Gym 1',
-			latitude: 0,
-			longitude: 0,
+			latitude: -22.0954624,
+			longitude: -51.4097152,
 			description: '',
 			phone: '',
 		});
@@ -36,8 +36,8 @@ describe('CreateCheckinUseCase', () => {
 		const { checkin } = await useCase.execute({
 			userId: '1',
 			gymId: '1',
-			userLatitude: 0,
-			userLongitude: 0,
+			userLatitude: -22.0954624,
+			userLongitude: -51.4097152,
 		});
 
 		expect(checkin).toBeDefined();
@@ -52,10 +52,18 @@ describe('CreateCheckinUseCase', () => {
 		await useCase.execute({
 			userId: '1',
 			gymId: '1',
-			userLatitude: 0,
-			userLongitude: 0,
+			userLatitude: -22.0954624,
+			userLongitude: -51.4097152,
 		});
 
+		await expect(
+			useCase.execute({
+				gymId: '1',
+				userId: '1',
+				userLatitude: -22.0954624,
+				userLongitude: -51.4097152,
+			}),
+		).rejects.toThrowError('User is already checked in');
 		await expect(
 			useCase.execute({
 				gymId: '1',
@@ -63,7 +71,27 @@ describe('CreateCheckinUseCase', () => {
 				userLatitude: 0,
 				userLongitude: 0,
 			}),
-		).rejects.toThrowError('User is already checked in');
+		).rejects.toBeInstanceOf(GlobalError);
+	});
+
+	it('should not create a checkin on a distant gym', async () => {
+		await gymsRepository.create({
+			id: '2',
+			title: 'Gym 2',
+			latitude: -22.0954624,
+			longitude: -51.4097152,
+			description: 'Gym 2 description',
+			phone: '123456789',
+		});
+
+		await expect(
+			useCase.execute({
+				gymId: '1',
+				userId: '1',
+				userLatitude: -21.8420215,
+				userLongitude: -51.8278823,
+			}),
+		).rejects.toThrowError('User is too far from gym');
 		await expect(
 			useCase.execute({
 				gymId: '1',
