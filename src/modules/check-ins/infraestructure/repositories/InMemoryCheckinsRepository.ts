@@ -30,4 +30,8 @@ export class InMemoryCheckinsRepository implements CheckinsRepository {
 
 		return checkin;
 	}
+
+	async findManyByUserId(userId: string, page: number): Promise<Checkin[]> {
+		return this.checkins.filter(checkin => checkin.userId === userId).slice((page - 1) * 20, page * 20);
+	}
 }

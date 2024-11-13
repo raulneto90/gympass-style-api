@@ -32,4 +32,14 @@ export class PrismaCheckinsRepository implements CheckinsRepository {
 
 		return checkin ? CheckinMapper.toDomain(checkin) : null;
 	}
+
+	async findManyByUserId(userId: string): Promise<Checkin[]> {
+		const checkins = await this.repository.findMany({
+			where: {
+				userId,
+			},
+		});
+
+		return checkins.map(CheckinMapper.toDomain);
+	}
 }
