@@ -2,9 +2,9 @@ import { GlobalError } from '@api/modules/common/errors/GlobalError';
 import { GymsRepository } from '@api/modules/gyms/domain/repositories/GymsRepository';
 import { InMemoryGymsRepository } from '@api/modules/gyms/infraestructure/repositories/InMemoryGymsRepository';
 import { afterEach, beforeEach, describe, expect, it, vitest } from 'vitest';
-import { CreateCheckinUseCase } from '../../application/use-cases/CreateCheckinUseCase';
-import { CheckinsRepository } from '../../domain/repositories/CheckinsRepository';
-import { InMemoryCheckinsRepository } from '../../infraestructure/repositories/InMemoryCheckinsRepository';
+import { CreateCheckinUseCase } from '../application/use-cases/CreateCheckinUseCase';
+import { CheckinsRepository } from '../domain/repositories/CheckinsRepository';
+import { InMemoryCheckinsRepository } from '../infraestructure/repositories/InMemoryCheckinsRepository';
 
 describe('CreateCheckinUseCase', () => {
 	let checkinRepository: CheckinsRepository;

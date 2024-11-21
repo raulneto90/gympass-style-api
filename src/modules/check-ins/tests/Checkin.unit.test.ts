@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
-import { Checkin } from '../../domain/entities/Checkin';
+import { Checkin } from '../domain/entities/Checkin';
 
 describe('Checkin', () => {
 	it('should be able to create an instance of Checkin with all data', () => {

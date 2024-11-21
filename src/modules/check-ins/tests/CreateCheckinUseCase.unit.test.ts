@@ -1,9 +1,9 @@
 import { GlobalError } from '@api/modules/common/errors/GlobalError';
 import { GymsRepository } from '@api/modules/gyms/domain/repositories/GymsRepository';
 import { beforeEach, describe, expect, it, vitest } from 'vitest';
-import { CreateCheckinUseCase } from '../../application/use-cases/CreateCheckinUseCase';
-import { Checkin } from '../../domain/entities/Checkin';
-import { CheckinsRepository } from '../../domain/repositories/CheckinsRepository';
+import { CreateCheckinUseCase } from '../application/use-cases/CreateCheckinUseCase';
+import { Checkin } from '../domain/entities/Checkin';
+import { CheckinsRepository } from '../domain/repositories/CheckinsRepository';
 
 describe('CreateCheckinUseCase', () => {
 	let checkInsRepository: CheckinsRepository;
@@ -14,7 +14,7 @@ describe('CreateCheckinUseCase', () => {
 		checkInsRepository = {
 			create: vitest.fn(),
 			findByIdAndDate: vitest.fn(),
-		};
+		} as unknown as CheckinsRepository;
 		gymsRepository = {
 			create: vitest.fn(),
 			findById: vitest.fn(),
