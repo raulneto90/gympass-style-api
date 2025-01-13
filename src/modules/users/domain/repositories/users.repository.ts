@@ -1,4 +1,4 @@
-import { CreateUserDTO } from '@src/modules/common/dtos/create-user.dto';
+import { CreateUserDTO } from '@src/modules/users/dtos/create-user.dto';
 import { User } from '../entities/User';
 
 export interface UsersRepository {

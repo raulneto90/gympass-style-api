@@ -1,7 +1,7 @@
-import { CreateUserDTO } from '@src/modules/common/dtos/create-user.dto';
 import { EntityAlreadyExistsError } from '@src/modules/common/errors/entity-already-exists.error';
 import { UsersRepository } from '@src/modules/users/domain/repositories/users.repository';
 import { PasswordHash } from '@src/modules/users/domain/services/password-hash';
+import { CreateUserDTO } from '@src/modules/users/dtos/create-user.dto';
 
 interface Response {
 	id: string;

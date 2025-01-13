@@ -1,6 +1,6 @@
-import { CreateUserDTO } from '@src/modules/common/dtos/create-user.dto';
 import { User } from '@src/modules/users/domain/entities/User';
 import { UsersRepository } from '@src/modules/users/domain/repositories/users.repository';
+import { CreateUserDTO } from '@src/modules/users/dtos/create-user.dto';
 
 export class InMemoryUsersRepository implements UsersRepository {
 	private users: User[] = [];
