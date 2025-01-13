@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { User } from '@src/domain/entities/User';
+import { User } from '@src/modules/users/domain/entities/User';
 
 export function makeUser(props?: User): User {
 	return {

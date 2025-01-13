@@ -1,8 +1,8 @@
-import { CreateUserDTO } from '@src/common/dtos/create-user.dto';
 import { prisma } from '@src/config/prisma';
-import { User } from '@src/domain/entities/User';
-import { UsersRepository } from '@src/domain/repositories/users.repository';
-import { UserMapper } from '@src/mappers/UserMapper';
+import { CreateUserDTO } from '@src/modules/common/dtos/create-user.dto';
+import { User } from '@src/modules/users/domain/entities/User';
+import { UsersRepository } from '@src/modules/users/domain/repositories/users.repository';
+import { UserMapper } from '@src/modules/users/mappers/UserMapper';
 
 export class PrismaUsersRepository implements UsersRepository {
 	async create(data: CreateUserDTO): Promise<User> {

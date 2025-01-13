@@ -1,7 +1,7 @@
-import { EntityAlreadyExistsError } from '@src/common/errors/entity-already-exists.error';
-import { UsersRepository } from '@src/domain/repositories/users.repository';
-import { PasswordHash } from '@src/domain/services/password-hash';
-import { InMemoryUsersRepository } from '@src/infraestructure/repositories/in-memory-users.repository';
+import { EntityAlreadyExistsError } from '@src/modules/common/errors/entity-already-exists.error';
+import { UsersRepository } from '@src/modules/users/domain/repositories/users.repository';
+import { PasswordHash } from '@src/modules/users/domain/services/password-hash';
+import { InMemoryUsersRepository } from '@src/modules/users/infraestructure/repositories/in-memory-users.repository';
 import { makeUser } from '@src/tests/mocks/user';
 import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { CreateUserUseCase } from './create-user.usecase';

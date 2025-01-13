@@ -1,12 +1,12 @@
 import fastify from 'fastify';
 import { ZodError } from 'zod';
-import { GlobalError } from './common/errors/global.error';
 import { env } from './config/environment';
-import { routes } from './infraestructure/routes';
+import { GlobalError } from './modules/common/errors/global.error';
+import { usersRoutes } from './modules/users/infraestructure/routes';
 
 export const app = fastify();
 
-app.register(routes);
+app.register(usersRoutes);
 app.setErrorHandler((error, _request, reply) => {
 	if (error instanceof ZodError) {
 		return reply.status(400).send({

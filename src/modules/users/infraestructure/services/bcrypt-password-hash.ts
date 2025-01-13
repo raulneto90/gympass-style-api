@@ -1,4 +1,4 @@
-import { PasswordHash } from '@src/domain/services/password-hash';
+import { PasswordHash } from '@src/modules/users/domain/services/password-hash';
 import bcrypt from 'bcryptjs';
 
 const SALT_ROUNDS = 8;

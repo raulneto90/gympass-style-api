@@ -1,6 +1,6 @@
-import { CreateUserUseCase } from '@src/application/use-cases/create-user/create-user.usecase';
-import { PrismaUsersRepository } from '@src/infraestructure/repositories/prisma-users.repository';
-import { BcryptPasswordHash } from '@src/infraestructure/services/bcrypt-password-hash';
+import { CreateUserUseCase } from '@src/modules/users/application/use-cases/create-user.usecase';
+import { PrismaUsersRepository } from '@src/modules/users/infraestructure/repositories/prisma-users.repository';
+import { BcryptPasswordHash } from '@src/modules/users/infraestructure/services/bcrypt-password-hash';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { createUserSchema } from '../validations/create-user.validation';
 
