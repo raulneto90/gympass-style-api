@@ -1,4 +1,4 @@
-import { CreateUsersController } from '@src/interfaces/controllers/create-user.controller';
+import { CreateUsersController } from '@src/modules/users/interfaces/controllers/create-user.controller';
 import { FastifyInstance } from 'fastify';
 
 const createUserController = new CreateUsersController();
