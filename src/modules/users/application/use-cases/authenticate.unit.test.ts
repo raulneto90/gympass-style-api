@@ -1,4 +1,5 @@
 import { InvalidCredentialsError } from '@src/modules/common/errors/invalid-credentials.error';
+import { makeUser } from '@src/tests/mocks/user';
 import jwt from 'jsonwebtoken';
 import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { UsersRepository } from '../../domain/repositories/users.repository';
@@ -29,11 +30,9 @@ describe('AuthenticateUseCase', () => {
 	});
 
 	it('should authenticate a user', async () => {
-		const user = await repository.create({
-			name: 'John Doe',
-			email: 'johndoe@example.com',
-			password: passwordHash.hash('password'),
-		});
+		const user = await repository.create(
+			makeUser({ password: passwordHash.hash('password') }),
+		);
 
 		(jwt.sign as Mock).mockReturnValue('token');
 
@@ -56,11 +55,7 @@ describe('AuthenticateUseCase', () => {
 	});
 
 	it('should throw an error if user password does not match', async () => {
-		const user = await repository.create({
-			name: 'John Doe',
-			email: 'johndoe@example.com',
-			password: passwordHash.hash('password'),
-		});
+		const user = await repository.create(makeUser());
 
 		await expect(
 			useCase.execute({
