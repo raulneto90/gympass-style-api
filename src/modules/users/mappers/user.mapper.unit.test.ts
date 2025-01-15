@@ -1,6 +1,6 @@
 import { makeUser } from '@src/tests/mocks/user';
 import { describe, expect, it } from 'vitest';
-import { UserMapper } from './UserMapper';
+import { UserMapper } from './user.mapper';
 
 describe('UserMapper', () => {
 	it('should map data to domain', () => {

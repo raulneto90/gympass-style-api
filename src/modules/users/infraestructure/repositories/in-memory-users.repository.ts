@@ -1,6 +1,7 @@
 import { User } from '@src/modules/users/domain/entities/User';
 import { UsersRepository } from '@src/modules/users/domain/repositories/users.repository';
 import { CreateUserDTO } from '@src/modules/users/dtos/create-user.dto';
+import { UserMapper } from '../../mappers/user.mapper';
 
 export class InMemoryUsersRepository implements UsersRepository {
 	private users: User[] = [];
@@ -9,7 +10,7 @@ export class InMemoryUsersRepository implements UsersRepository {
 		const user = new User(data);
 		this.users.push(user);
 
-		return user;
+		return UserMapper.toDomain(user);
 	}
 
 	async findByEmail(email: string): Promise<User | null> {
