@@ -1,17 +1,32 @@
+import { GymsRepository } from '@src/modules/gyms/domain/repositories/gyms.repository';
+import { InMemoryGymsRepository } from '@src/modules/gyms/infraestructure/repositories/in-memory-gyms.repository';
 import { makeCheckin } from '@src/tests/mocks/checkin';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { makeGym } from '@src/tests/mocks/gyms';
+import {
+	afterEach,
+	beforeAll,
+	beforeEach,
+	describe,
+	expect,
+	it,
+	vi,
+} from 'vitest';
 import { CheckInsRepository } from '../../domain/repositories/check-ins.repository';
 import { InMemoryCheckInsRepository } from '../../infraestructure/repositories/in-memory-check-ins.repository';
 import { CheckinUseCase } from './create-check-in.usecase';
 
 describe('CreateCheckinUseCase', () => {
-	let repository: CheckInsRepository;
+	let checkInsRepository: CheckInsRepository;
+	let gymsRepository: GymsRepository;
 	let useCase: CheckinUseCase;
 
-	beforeEach(() => {
+	beforeEach(async () => {
 		vi.useFakeTimers();
-		repository = new InMemoryCheckInsRepository();
-		useCase = new CheckinUseCase(repository);
+		checkInsRepository = new InMemoryCheckInsRepository();
+		gymsRepository = new InMemoryGymsRepository();
+		useCase = new CheckinUseCase(checkInsRepository, gymsRepository);
+
+		await gymsRepository.create({ ...makeGym() });
 	});
 
 	afterEach(() => {
