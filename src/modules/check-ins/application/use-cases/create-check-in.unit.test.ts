@@ -1,3 +1,4 @@
+import { MaxNumberOfCheckinError } from '@src/modules/common/errors/max-number-of-check-in-error';
 import { GymsRepository } from '@src/modules/gyms/domain/repositories/gyms.repository';
 import { InMemoryGymsRepository } from '@src/modules/gyms/infraestructure/repositories/in-memory-gyms.repository';
 import { makeCheckin } from '@src/tests/mocks/checkin';
@@ -53,7 +54,9 @@ describe('CreateCheckinUseCase', () => {
 
 		await useCase.execute(data);
 
-		await expect(useCase.execute(data)).rejects.toBeInstanceOf(Error);
+		await expect(useCase.execute(data)).rejects.toBeInstanceOf(
+			MaxNumberOfCheckinError,
+		);
 	});
 
 	it('should create a check-in if the user checks in on different days', async () => {

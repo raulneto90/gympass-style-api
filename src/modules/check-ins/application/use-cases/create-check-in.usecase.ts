@@ -1,4 +1,5 @@
 import { EntityNotFoundError } from '@src/modules/common/errors/entity-not-found.error';
+import { MaxNumberOfCheckinError } from '@src/modules/common/errors/max-number-of-check-in-error';
 import { GymsRepository } from '@src/modules/gyms/domain/repositories/gyms.repository';
 import { Checkin } from '../../domain/entities/CheckIn';
 import { CheckInsRepository } from '../../domain/repositories/check-ins.repository';
@@ -27,7 +28,7 @@ export class CheckinUseCase {
 		);
 
 		if (checkinOnSameDay) {
-			throw new Error('User already checked in today');
+			throw new MaxNumberOfCheckinError();
 		}
 
 		const checkin = await this.checkinsRepository.create(data);
