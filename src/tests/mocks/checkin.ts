@@ -7,5 +7,7 @@ export function makeCheckin(props?: Partial<Checkin>): Checkin {
 		gymId: props?.gymId ?? 'gym-01',
 		userId: props?.userId ?? 'gym-01',
 		createdAt: new Date(),
+		latitude: props?.latitude ?? 0,
+		longitude: props?.longitude ?? 0,
 	};
 }

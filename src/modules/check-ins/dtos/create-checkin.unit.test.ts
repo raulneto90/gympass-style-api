@@ -6,6 +6,8 @@ describe('createCheckinSchema', () => {
 		const validData = {
 			userId: '123e4567-e89b-12d3-a456-426614174000',
 			gymId: '123e4567-e89b-12d3-a456-426614174001',
+			latitude: -23.5505199,
+			longitude: -46.6333094,
 		};
 
 		expect(() => createCheckinSchema.parse(validData)).not.toThrow();
