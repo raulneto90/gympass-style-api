@@ -32,4 +32,12 @@ export class InMemoryCheckInsRepository implements CheckInsRepository {
 
 		return CheckinMapper.toDomain(checkIn);
 	}
+
+	async findManyByUserId(userId: string, page: number): Promise<Checkin[]> {
+		const checkIns = this.checkIns
+			.filter(checkin => checkin.userId === userId)
+			.slice((page - 1) * 20, page * 20);
+
+		return checkIns.map(checkin => CheckinMapper.toDomain(checkin));
+	}
 }

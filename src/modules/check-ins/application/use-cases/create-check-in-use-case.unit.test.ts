@@ -15,7 +15,7 @@ import {
 } from 'vitest';
 import { CheckInsRepository } from '../../domain/repositories/check-ins.repository';
 import { InMemoryCheckInsRepository } from '../../infraestructure/repositories/in-memory-check-ins.repository';
-import { CheckinUseCase } from './create-check-in.usecase';
+import { CheckinUseCase } from './create-check-in-usecase';
 
 describe('CreateCheckinUseCase', () => {
 	let checkInsRepository: CheckInsRepository;
