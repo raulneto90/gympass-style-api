@@ -4,6 +4,8 @@ import { Checkin } from '../entities/CheckIn';
 export interface CheckInsRepository {
 	create(data: CreateCheckinDTO): Promise<Checkin>;
 	findByUserIdOnDate(userId: string, date: Date): Promise<Checkin | null>;
+	findById(id: string): Promise<Checkin | null>;
 	findManyByUserId(userId: string, page: number): Promise<Checkin[]>;
 	countByUserId(userId: string): Promise<number>;
+	save(checkin: Checkin): Promise<void>;
 }
