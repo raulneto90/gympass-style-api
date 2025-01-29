@@ -19,8 +19,13 @@ export class CheckinUseCase {
 		private readonly gymsRepository: GymsRepository,
 	) {}
 
-	async execute(data: CreateCheckinDTO): Promise<Response> {
-		const gym = await this.gymsRepository.findById(data.gymId);
+	async execute({
+		gymId,
+		latitude,
+		longitude,
+		userId,
+	}: CreateCheckinDTO): Promise<Response> {
+		const gym = await this.gymsRepository.findById(gymId);
 
 		if (!gym) {
 			throw new EntityNotFoundError('Gym not found');
@@ -28,7 +33,7 @@ export class CheckinUseCase {
 
 		const distance = getDistanceBetweenCoordinates(
 			{ latitude: gym.latitude, longitude: gym.longitude },
-			{ latitude: data.latitude, longitude: data.longitude },
+			{ latitude, longitude },
 		);
 
 		if (distance > CheckinUseCase.MAX_DISTANCE_IN_KILOMETERS) {
@@ -36,7 +41,7 @@ export class CheckinUseCase {
 		}
 
 		const checkinOnSameDay = await this.checkinsRepository.findByUserIdOnDate(
-			data.userId,
+			userId,
 			new Date(),
 		);
 
@@ -44,7 +49,7 @@ export class CheckinUseCase {
 			throw new MaxNumberOfCheckinError();
 		}
 
-		const checkin = await this.checkinsRepository.create(data);
+		const checkin = await this.checkinsRepository.create({ gymId, userId });
 
 		return { checkin };
 	}

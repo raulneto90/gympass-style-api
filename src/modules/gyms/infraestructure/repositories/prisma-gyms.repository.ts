@@ -2,6 +2,7 @@ import { prisma } from '@src/config/prisma';
 import { Gym } from '../../domain/entities/Gym';
 import { GymsRepository } from '../../domain/repositories/gyms.repository';
 import { CreateGymDTO } from '../../dtos/create-gym.dto';
+import { SearchNearbyGymsDTO } from '../../dtos/search-nearby-gyms-dto';
 import { GymMapper } from '../../mappers/GymMapper';
 
 export class PrismaGymsRepository implements GymsRepository {
@@ -24,5 +25,13 @@ export class PrismaGymsRepository implements GymsRepository {
 			title: gym.title,
 			id: gym.id,
 		});
+	}
+
+	async searchMany(query: string, page: number): Promise<Gym[]> {
+		throw new Error('Method not implemented.');
+	}
+
+	async searchManyNearby(data: SearchNearbyGymsDTO): Promise<Gym[]> {
+		throw new Error('Method not implemented.');
 	}
 }
