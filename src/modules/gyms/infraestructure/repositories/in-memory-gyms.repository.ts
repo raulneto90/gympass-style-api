@@ -19,4 +19,12 @@ export class InMemoryGymsRepository implements GymsRepository {
 
 		return GymMapper.toDomain(gym);
 	}
+
+	async searchMany(query: string, page: number): Promise<Gym[]> {
+		const gyms = this.gyms
+			.filter(gym => gym.title.includes(query))
+			.slice((page - 1) * 20, page * 20 + 20);
+
+		return gyms.map(GymMapper.toDomain);
+	}
 }
