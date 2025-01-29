@@ -4,18 +4,10 @@ import { GymsRepository } from '@src/modules/gyms/domain/repositories/gyms.repos
 import { InMemoryGymsRepository } from '@src/modules/gyms/infraestructure/repositories/in-memory-gyms.repository';
 import { makeCheckin } from '@src/tests/mocks/checkin';
 import { makeGym } from '@src/tests/mocks/gyms';
-import {
-	afterEach,
-	beforeAll,
-	beforeEach,
-	describe,
-	expect,
-	it,
-	vi,
-} from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { CheckInsRepository } from '../../domain/repositories/check-ins.repository';
 import { InMemoryCheckInsRepository } from '../../infraestructure/repositories/in-memory-check-ins.repository';
-import { CheckinUseCase } from './create-check-in-usecase';
+import { CheckinUseCase } from './create-check-in-use-case';
 
 describe('CreateCheckinUseCase', () => {
 	let checkInsRepository: CheckInsRepository;

@@ -4,7 +4,7 @@ import { MaxNumberOfCheckinError } from '@src/modules/common/errors/max-number-o
 import { GymsRepository } from '@src/modules/gyms/domain/repositories/gyms.repository';
 import { Checkin } from '../../domain/entities/CheckIn';
 import { CheckInsRepository } from '../../domain/repositories/check-ins.repository';
-import { CreateCheckinDTO } from '../../dtos/create-checkin.dto';
+import { CreateCheckinDTO } from '../../dtos/create-checkin-dto';
 import { getDistanceBetweenCoordinates } from '../../utils/get-distance-between-coordinates';
 
 type Response = {

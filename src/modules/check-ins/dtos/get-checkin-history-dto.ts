@@ -1,7 +1,7 @@
 import z from 'zod';
 
 export const getCheckinHistorySchema = z.object({
-	userId: z.string(),
+	userId: z.string().uuid(),
 	page: z.number().default(1),
 });
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createCheckinSchema } from './create-checkin.dto';
+import { createCheckinSchema } from './create-checkin-dto';
 
 describe('createCheckinSchema', () => {
 	it('should validate a valid schema', () => {

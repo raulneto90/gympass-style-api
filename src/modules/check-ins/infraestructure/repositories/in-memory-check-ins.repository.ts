@@ -2,7 +2,7 @@ import { DayJsDateService } from '@src/modules/common/application/services/day-j
 import { DateService } from '@src/modules/common/domain/services/date.service';
 import { Checkin } from '../../domain/entities/CheckIn';
 import { CheckInsRepository } from '../../domain/repositories/check-ins.repository';
-import { CreateCheckinDTO } from '../../dtos/create-checkin.dto';
+import { CreateCheckinDTO } from '../../dtos/create-checkin-dto';
 import { CheckinMapper } from '../../mappers/check-in.mapper';
 
 export class InMemoryCheckInsRepository implements CheckInsRepository {
@@ -39,5 +39,9 @@ export class InMemoryCheckInsRepository implements CheckInsRepository {
 			.slice((page - 1) * 20, page * 20);
 
 		return checkIns.map(checkin => CheckinMapper.toDomain(checkin));
+	}
+
+	async countByUserId(userId: string): Promise<number> {
+		return this.checkIns.filter(checkin => checkin.userId === userId).length;
 	}
 }
