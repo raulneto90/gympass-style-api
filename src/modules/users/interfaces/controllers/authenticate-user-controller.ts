@@ -1,3 +1,4 @@
+import { env } from '@src/config/environment';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { authenticateUserSchema } from '../../dtos/authenticate-user.dto';
 import { makeAuthenticateUserUseCase } from '../../factories/authenticate-user.factory';
@@ -12,8 +13,20 @@ export class AuthenticateUserController {
 
 		const authenticateUseCase = makeAuthenticateUserUseCase();
 
-		const result = await authenticateUseCase.execute(validation.data);
+		const { user } = await authenticateUseCase.execute(validation.data);
 
-		return reply.code(200).send(result);
+		const token = await reply.jwtSign(
+			{},
+			{
+				sign: {
+					sub: user.id,
+					expiresIn: env.JWT_EXPIRATION,
+				},
+			},
+		);
+
+		return reply
+			.code(200)
+			.send({ type: 'Bearer', token, expiresIn: env.JWT_EXPIRATION });
 	}
 }

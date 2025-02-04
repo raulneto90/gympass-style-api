@@ -5,6 +5,8 @@ export class ProfileController {
 		request: FastifyRequest,
 		reply: FastifyReply,
 	): Promise<FastifyReply> {
+		await request.jwtVerify();
+
 		return reply.send('Hello, world!');
 	}
 }
