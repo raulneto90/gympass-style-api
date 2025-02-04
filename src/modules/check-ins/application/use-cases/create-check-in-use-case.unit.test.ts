@@ -7,18 +7,18 @@ import { makeGym } from '@src/tests/mocks/gyms';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { CheckInsRepository } from '../../domain/repositories/check-ins.repository';
 import { InMemoryCheckInsRepository } from '../../infraestructure/repositories/in-memory-check-ins.repository';
-import { CheckinUseCase } from './create-check-in-use-case';
+import { CreateCheckinUseCase } from './create-check-in-use-case';
 
 describe('CreateCheckinUseCase', () => {
 	let checkInsRepository: CheckInsRepository;
 	let gymsRepository: GymsRepository;
-	let useCase: CheckinUseCase;
+	let useCase: CreateCheckinUseCase;
 
 	beforeEach(async () => {
 		vi.useFakeTimers();
 		checkInsRepository = new InMemoryCheckInsRepository();
 		gymsRepository = new InMemoryGymsRepository();
-		useCase = new CheckinUseCase(checkInsRepository, gymsRepository);
+		useCase = new CreateCheckinUseCase(checkInsRepository, gymsRepository);
 
 		await gymsRepository.create({ ...makeGym() });
 	});

@@ -11,7 +11,7 @@ type Response = {
 	checkin: Checkin;
 };
 
-export class CheckinUseCase {
+export class CreateCheckinUseCase {
 	private static readonly MAX_DISTANCE_IN_KILOMETERS = 0.1;
 
 	constructor(
@@ -36,7 +36,7 @@ export class CheckinUseCase {
 			{ latitude, longitude },
 		);
 
-		if (distance > CheckinUseCase.MAX_DISTANCE_IN_KILOMETERS) {
+		if (distance > CreateCheckinUseCase.MAX_DISTANCE_IN_KILOMETERS) {
 			throw new MaxCheckinDistanceError();
 		}
 
