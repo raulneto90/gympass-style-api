@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
+import { createUserSchema } from '../../dtos/create-user.dto';
 import { makeCreateUserUseCase } from '../../factories/create-user.factory';
-import { createUserSchema } from '../validations/create-user.validation';
 
 export class CreateUsersController {
 	async handle(request: FastifyRequest, reply: FastifyReply) {

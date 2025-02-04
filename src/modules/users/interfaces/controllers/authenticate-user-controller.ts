@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
+import { authenticateUserSchema } from '../../dtos/authenticate-user.dto';
 import { makeAuthenticateUserUseCase } from '../../factories/authenticate-user.factory';
-import { authenticateUserSchema } from '../validations/authenticate-user.validation';
 
 export class AuthenticateUserController {
 	async handle(request: FastifyRequest, reply: FastifyReply) {
