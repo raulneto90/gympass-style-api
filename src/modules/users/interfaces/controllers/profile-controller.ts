@@ -1,12 +1,20 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
+import { makeProfileUseCase } from '../../factories/profile.factory';
 
 export class ProfileController {
 	async handle(
 		request: FastifyRequest,
 		reply: FastifyReply,
 	): Promise<FastifyReply> {
-		await request.jwtVerify();
+		const getUserProfileUseCase = makeProfileUseCase();
 
-		return reply.send('Hello, world!');
+		const { user } = await getUserProfileUseCase.execute({
+			id: request.user.sub,
+		});
+
+		return reply.status(200).send({
+			...user,
+			password: undefined,
+		});
 	}
 }
