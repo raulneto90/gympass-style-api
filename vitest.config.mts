@@ -9,8 +9,22 @@ export default defineConfig({
 		coverage: {
 			reporter: ['lcov', 'text', 'text-summary'],
 		},
-		environmentMatchGlobs: [
-			['src/modules/**/interfaces/controller/**', 'prisma'],
+		pool: 'threads',
+		workspace: [
+			{
+				extends: true,
+				test: {
+					name: 'unit',
+					include: ['**/*.unit.test.ts'],
+				},
+			},
+			{
+				extends: true,
+				test: {
+					name: 'e2e',
+					include: ['**/*.e2e.test.ts'],
+				},
+			},
 		],
 	},
 });

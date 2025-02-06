@@ -5,7 +5,7 @@ import { UsersRepository } from '../../domain/repositories/users.repository';
 import { PasswordHash } from '../../domain/services/password-hash';
 import { InMemoryUsersRepository } from '../../infraestructure/repositories/in-memory-users.repository';
 import { BcryptPasswordHash } from '../../infraestructure/services/bcrypt-password-hash';
-import { AuthenticateUseCase } from './authenticate.usecase';
+import { AuthenticateUseCase } from './authenticate-use-case';
 
 describe('AuthenticateUseCase', () => {
 	let passwordHash: PasswordHash;

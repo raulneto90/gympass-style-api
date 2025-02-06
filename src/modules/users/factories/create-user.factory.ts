@@ -1,4 +1,4 @@
-import { CreateUserUseCase } from '../application/use-cases/create-user.usecase';
+import { CreateUserUseCase } from '../application/use-cases/create-user-use-case';
 import { PrismaUsersRepository } from '../infraestructure/repositories/prisma-users.repository';
 import { BcryptPasswordHash } from '../infraestructure/services/bcrypt-password-hash';
 

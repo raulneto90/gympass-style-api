@@ -4,7 +4,7 @@ import { PasswordHash } from '@src/modules/users/domain/services/password-hash';
 import { InMemoryUsersRepository } from '@src/modules/users/infraestructure/repositories/in-memory-users.repository';
 import { makeUser } from '@src/tests/mocks/user';
 import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
-import { CreateUserUseCase } from './create-user.usecase';
+import { CreateUserUseCase } from './create-user-use-case';
 
 describe('CreateUserUseCase', () => {
 	let useCase: CreateUserUseCase;

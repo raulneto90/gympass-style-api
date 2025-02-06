@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ProfileUseCase } from '../application/use-cases/profile.usecase';
+import { ProfileUseCase } from '../application/use-cases/profile-use-case';
 import { makeProfileUseCase } from './profile.factory';
 
 describe('MakeProfileUseCase', () => {

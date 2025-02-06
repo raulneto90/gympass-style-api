@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CreateUserUseCase } from '../application/use-cases/create-user.usecase';
+import { CreateUserUseCase } from '../application/use-cases/create-user-use-case';
 import { makeCreateUserUseCase } from './create-user.factory';
 
 describe('makeCreateUserUseCase Factory', () => {

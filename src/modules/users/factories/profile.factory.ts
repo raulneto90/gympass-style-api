@@ -1,4 +1,4 @@
-import { ProfileUseCase } from '../application/use-cases/profile.usecase';
+import { ProfileUseCase } from '../application/use-cases/profile-use-case';
 import { PrismaUsersRepository } from '../infraestructure/repositories/prisma-users.repository';
 
 export function makeProfileUseCase() {

@@ -3,7 +3,7 @@ import { makeUser } from '@src/tests/mocks/user';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { UsersRepository } from '../../domain/repositories/users.repository';
 import { InMemoryUsersRepository } from '../../infraestructure/repositories/in-memory-users.repository';
-import { ProfileUseCase } from './profile.usecase';
+import { ProfileUseCase } from './profile-use-case';
 
 describe('UserProfileUseCase', () => {
 	let useCase: ProfileUseCase;
