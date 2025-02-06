@@ -1,19 +1,13 @@
 import { InvalidCredentialsError } from '@src/modules/common/errors/invalid-credentials.error';
 import { makeUser } from '@src/tests/mocks/user';
-import jwt from 'jsonwebtoken';
-import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { UsersRepository } from '../../domain/repositories/users.repository';
 import { PasswordHash } from '../../domain/services/password-hash';
-import { TokenGeneratorService } from '../../domain/services/token-generator';
 import { InMemoryUsersRepository } from '../../infraestructure/repositories/in-memory-users.repository';
 import { BcryptPasswordHash } from '../../infraestructure/services/bcrypt-password-hash';
-import { JsonWebTokenService } from '../../infraestructure/services/jsonwebtoken.service';
 import { AuthenticateUseCase } from './authenticate.usecase';
 
-vi.mock('jsonwebtoken');
-
 describe('AuthenticateUseCase', () => {
-	let tokenGeneratorService: TokenGeneratorService;
 	let passwordHash: PasswordHash;
 	let repository: UsersRepository;
 	let useCase: AuthenticateUseCase;
@@ -21,12 +15,7 @@ describe('AuthenticateUseCase', () => {
 	beforeEach(() => {
 		repository = new InMemoryUsersRepository();
 		passwordHash = new BcryptPasswordHash();
-		tokenGeneratorService = new JsonWebTokenService();
-		useCase = new AuthenticateUseCase(
-			repository,
-			passwordHash,
-			tokenGeneratorService,
-		);
+		useCase = new AuthenticateUseCase(repository, passwordHash);
 	});
 
 	it('should authenticate a user', async () => {
@@ -34,15 +23,14 @@ describe('AuthenticateUseCase', () => {
 			makeUser({ password: passwordHash.hash('password') }),
 		);
 
-		(jwt.sign as Mock).mockReturnValue('token');
-
 		const result = await useCase.execute({
 			email: user.email,
 			password: 'password',
 		});
 
 		expect(result).toBeDefined();
-		expect(result).toHaveProperty('token');
+		expect(result).toHaveProperty('user');
+		expect(result.user.email).toBe(user.email);
 	});
 
 	it('should throw an error if the user does not exist', async () => {

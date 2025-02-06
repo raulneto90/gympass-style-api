@@ -5,10 +5,12 @@ export default defineConfig({
 	plugins: [tsconfigPaths()],
 	test: {
 		css: false,
-		environment: 'happy-dom',
 		exclude: [...defaultExclude],
 		coverage: {
 			reporter: ['lcov', 'text', 'text-summary'],
 		},
+		environmentMatchGlobs: [
+			['src/modules/**/interfaces/controller/**', 'prisma'],
+		],
 	},
 });
