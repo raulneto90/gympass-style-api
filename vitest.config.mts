@@ -9,6 +9,7 @@ export default defineConfig({
 		coverage: {
 			reporter: ['lcov', 'text', 'text-summary'],
 		},
+
 		pool: 'threads',
 		workspace: [
 			{
@@ -22,6 +23,7 @@ export default defineConfig({
 				extends: true,
 				test: {
 					name: 'e2e',
+					environment: 'prisma',
 					include: ['**/*.e2e.test.ts'],
 				},
 			},
