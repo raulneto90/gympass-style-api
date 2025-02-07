@@ -2,7 +2,7 @@ import { app } from '@src/app';
 import request from 'supertest';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
-describe('AuthenticateUserController', () => {
+describe('ProfileController', () => {
 	beforeAll(async () => {
 		await app.ready();
 	});
@@ -18,12 +18,24 @@ describe('AuthenticateUserController', () => {
 			password: '123456',
 		});
 
-		const response = await request(app.server).post('/v1/sessions').send({
+		const authResponse = await request(app.server).post('/v1/sessions').send({
 			email: 'johndoe@example.com',
 			password: '123456',
 		});
 
+		const { token } = authResponse.body;
+
+		const response = await request(app.server)
+			.get('/v1/me')
+			.set('Authorization', `Bearer ${token}`)
+			.send();
+
 		expect(response.statusCode).toBe(200);
-		expect(response.body).toEqual({ token: expect.any(String) });
+		expect(response.body).toEqual(
+			expect.objectContaining({
+				id: expect.any(String),
+				email: 'johndoe@example.com',
+			}),
+		);
 	});
 });
