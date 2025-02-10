@@ -3,7 +3,8 @@ import fastify from 'fastify';
 import { ZodError } from 'zod';
 import { env } from './config/environment';
 import { GlobalError } from './modules/common/errors/global.error';
-import { usersRoutes } from './modules/users/infraestructure/routes';
+import { gymsRoutes } from './modules/gyms/interfaces/routes';
+import { usersRoutes } from './modules/users/interfaces/routes';
 
 export const app = fastify();
 
@@ -12,6 +13,7 @@ app.register(fastifyJwt, {
 });
 
 app.register(usersRoutes);
+app.register(gymsRoutes);
 app.setErrorHandler((error, _request, reply) => {
 	if (error instanceof ZodError) {
 		return reply.status(400).send({

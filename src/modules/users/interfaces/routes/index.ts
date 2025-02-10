@@ -1,7 +1,7 @@
 import { verifyJWT } from '@src/modules/common/interfaces/middlewares/verify-jwt';
 import { CreateUsersController } from '@src/modules/users/interfaces/controllers/create-user-controller';
 import { FastifyInstance } from 'fastify';
-import { ProfileController } from '../../interfaces/controllers/profile-controller';
+import { ProfileController } from '../controllers/profile-controller';
 
 const createUserController = new CreateUsersController();
 const profileController = new ProfileController();
