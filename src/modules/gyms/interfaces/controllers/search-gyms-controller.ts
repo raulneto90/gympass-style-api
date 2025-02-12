@@ -4,7 +4,7 @@ import { makeSearchGymsUseCase } from '../../factories/make-search-gyms-use-case
 
 export class SearchGymsController {
 	async handle(request: FastifyRequest, reply: FastifyReply) {
-		const { page, title } = searchGymsSchema.parse(request.body);
+		const { page, title } = searchGymsSchema.parse(request.query);
 
 		const searchGymsUseCase = makeSearchGymsUseCase();
 

@@ -2,13 +2,14 @@ import { CheckInAlreadyExpiredError } from '@src/modules/common/errors/check-in-
 import { EntityNotFoundError } from '@src/modules/common/errors/entity-not-found.error';
 import dayjs from 'dayjs';
 import { CheckInsRepository } from '../../domain/repositories/check-ins.repository';
+import { ValidateCheckinDTO } from '../../dtos/validate-checkin-dto';
 
 export class ValidateCheckinUseCase {
 	private static readonly MAX_MINUTES_TO_VALIDATE_CHECKIN = 20;
 
 	constructor(private readonly checkinsRepository: CheckInsRepository) {}
 
-	async execute(checkinId: string): Promise<void> {
+	async execute({ checkinId }: ValidateCheckinDTO): Promise<void> {
 		const checkin = await this.checkinsRepository.findById(checkinId);
 
 		if (!checkin) {

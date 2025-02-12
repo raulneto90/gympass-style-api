@@ -1,10 +1,13 @@
 import z from 'zod';
 
 export const createCheckinSchema = z.object({
-	userId: z.string().uuid(),
-	gymId: z.string().uuid(),
 	latitude: z.number(),
 	longitude: z.number(),
 });
 
-export type CreateCheckinDTO = z.infer<typeof createCheckinSchema>;
+export const createCheckinParamsSchema = z.object({
+	gymId: z.string().uuid(),
+});
+
+export type CreateCheckinDTO = z.infer<typeof createCheckinSchema> &
+	z.infer<typeof createCheckinParamsSchema> & { userId: string };

@@ -5,7 +5,7 @@ import { makeSearchNearbyGymsUseCase } from '../../factories/make-search-nearby-
 export class SearchNearbyGymsController {
 	async handle(request: FastifyRequest, reply: FastifyReply) {
 		const { userLatitude, userLongitude } = searchNearbyGymsSchema.parse(
-			request.body,
+			request.query,
 		);
 
 		const searchNearbyGymsUseCase = makeSearchNearbyGymsUseCase();
