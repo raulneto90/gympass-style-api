@@ -3,7 +3,7 @@ import { createAndAuthenticateUser } from '@src/tests/services/create-and-authen
 import request from 'supertest';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
-describe('ProfileController', () => {
+describe('CreateGymController', () => {
 	beforeAll(async () => {
 		await app.ready();
 	});
@@ -12,19 +12,25 @@ describe('ProfileController', () => {
 		await app.close();
 	});
 
-	it('should be able to authenticate', async () => {
+	it('should be able to create a gym', async () => {
 		const { token } = await createAndAuthenticateUser(app);
 
 		const response = await request(app.server)
-			.get('/v1/me')
+			.post('/v1/gyms')
 			.set('Authorization', `Bearer ${token}`)
-			.send();
+			.send({
+				title: 'Gym 1',
+				description: 'Gym 1 description',
+				phone: '123456789',
+				latitude: -23.56789,
+				longitude: -46.78901,
+			});
 
 		expect(response.statusCode).toBe(200);
 		expect(response.body).toEqual(
 			expect.objectContaining({
 				id: expect.any(String),
-				email: 'johndoe@example.com',
+				title: 'Gym 1',
 			}),
 		);
 	});

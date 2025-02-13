@@ -24,16 +24,18 @@ describe('ValidateCheckInUseCase', () => {
 	it('should validate a check-in', async () => {
 		const checkin = await repository.create(makeCheckin());
 
-		await expect(useCase.execute(checkin.id)).resolves.toBeUndefined();
+		await expect(
+			useCase.execute({ checkinId: checkin.id }),
+		).resolves.toBeUndefined();
 	});
 
 	it('should throw an error if check-in is not found', async () => {
-		await expect(useCase.execute('invalid-id')).rejects.toThrowError(
-			'CheckIn not found',
-		);
-		await expect(useCase.execute('invalid-id')).rejects.toBeInstanceOf(
-			EntityNotFoundError,
-		);
+		await expect(
+			useCase.execute({ checkinId: 'invalid-id' }),
+		).rejects.toThrowError('CheckIn not found');
+		await expect(
+			useCase.execute({ checkinId: 'invalid-id' }),
+		).rejects.toBeInstanceOf(EntityNotFoundError);
 	});
 
 	it('should throw an error if check-in is validated after 20 minutes of its creation', async () => {
@@ -45,11 +47,11 @@ describe('ValidateCheckInUseCase', () => {
 
 		vi.advanceTimersByTime(twentyMinutesInMillis);
 
-		await expect(useCase.execute(checkin.id)).rejects.toThrowError(
-			'CheckIn already expired',
-		);
-		await expect(useCase.execute(checkin.id)).rejects.toBeInstanceOf(
-			CheckInAlreadyExpiredError,
-		);
+		await expect(
+			useCase.execute({ checkinId: checkin.id }),
+		).rejects.toThrowError('CheckIn already expired');
+		await expect(
+			useCase.execute({ checkinId: checkin.id }),
+		).rejects.toBeInstanceOf(CheckInAlreadyExpiredError);
 	});
 });

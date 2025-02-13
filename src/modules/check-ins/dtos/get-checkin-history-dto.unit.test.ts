@@ -1,31 +1,26 @@
 import { describe, expect, it } from 'vitest';
 import { getCheckinHistorySchema } from './get-checkin-history-dto';
 
-describe('GetCheckinHistoryDto', () => {
-	it('should validate a valid schema', () => {
-		const validData = {
-			userId: '123e4567-e89b-12d3-a456-426614174000',
-			page: 1,
-		};
-
-		expect(() => getCheckinHistorySchema.parse(validData)).not.toThrow();
+describe('GetCheckinHistoryDTO', () => {
+	it('should validate with default page value', () => {
+		const data = { userId: 'user-123' };
+		const parsedData = getCheckinHistorySchema.parse(data);
+		expect(parsedData).toEqual({ page: 1 });
 	});
 
-	it('should throw an error for invalid userId', () => {
-		const invalidData = {
-			userId: 'invalid-uuid',
-			page: 1,
-		};
-
-		expect(() => getCheckinHistorySchema.parse(invalidData)).toThrow();
+	it('should validate with provided page value', () => {
+		const data = { page: 2, userId: 'user-123' };
+		const parsedData = getCheckinHistorySchema.parse(data);
+		expect(parsedData).toEqual({ page: 2 });
 	});
 
-	it('should throw an error for invalid page', () => {
-		const invalidData = {
-			userId: '123e4567-e89b-12d3-a456-426614174000',
-			page: 'invalid-page',
-		};
+	it('should throw an error if page is not a number', () => {
+		const data = { page: 'invalid', userId: 'user-123' };
+		expect(() => getCheckinHistorySchema.parse(data)).toThrow();
+	});
 
-		expect(() => getCheckinHistorySchema.parse(invalidData)).toThrow();
+	it('should throw an error if userId is missing', () => {
+		const data = { page: 1 };
+		expect(() => getCheckinHistorySchema.parse(data)).toThrow();
 	});
 });

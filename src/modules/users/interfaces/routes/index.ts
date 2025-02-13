@@ -7,6 +7,6 @@ const createUserController = new CreateUsersController();
 const profileController = new ProfileController();
 
 export function usersRoutes(app: FastifyInstance) {
-	app.post('/v1/users', createUserController.handle);
-	app.get('/v1/me', { onRequest: [verifyJWT] }, profileController.handle);
+	app.post('/users', createUserController.handle);
+	app.get('/me', { onRequest: [verifyJWT] }, profileController.handle);
 }
