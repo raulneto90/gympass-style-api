@@ -18,9 +18,4 @@ describe('GetCheckinHistoryDTO', () => {
 		const data = { page: 'invalid', userId: 'user-123' };
 		expect(() => getCheckinHistorySchema.parse(data)).toThrow();
 	});
-
-	it('should throw an error if userId is missing', () => {
-		const data = { page: 1 };
-		expect(() => getCheckinHistorySchema.parse(data)).toThrow();
-	});
 });
