@@ -13,13 +13,13 @@ export class CreateCheckinController {
 
 		const createCheckinUseCase = makeCreateCheckinsUseCase();
 
-		await createCheckinUseCase.execute({
+		const { checkin } = await createCheckinUseCase.execute({
 			latitude,
 			longitude,
 			gymId,
 			userId: request.user.sub,
 		});
 
-		return reply.status(201).send();
+		return reply.status(201).send(checkin);
 	}
 }
