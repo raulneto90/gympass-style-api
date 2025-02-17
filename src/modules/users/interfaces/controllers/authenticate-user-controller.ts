@@ -16,7 +16,7 @@ export class AuthenticateUserController {
 		const { user } = await authenticateUseCase.execute(validation.data);
 
 		const token = await reply.jwtSign(
-			{},
+			{ role: user.role },
 			{
 				sign: {
 					sub: user.id,
@@ -25,7 +25,7 @@ export class AuthenticateUserController {
 		);
 
 		const refreshToken = await reply.jwtSign(
-			{},
+			{ role: user.role },
 			{
 				sign: {
 					sub: user.id,

@@ -1,4 +1,5 @@
 import { verifyJWT } from '@src/modules/common/interfaces/middlewares/verify-jwt';
+import { verifyUserRole } from '@src/modules/common/interfaces/middlewares/verify-user-role';
 import { FastifyInstance } from 'fastify';
 import { CreateGymController } from '../controllers/create-gym-controller';
 import { SearchGymsController } from '../controllers/search-gyms-controller';
@@ -10,7 +11,11 @@ const searchNearbyGymsController = new SearchNearbyGymsController();
 
 export function gymsRoutes(app: FastifyInstance) {
 	app.addHook('onRequest', verifyJWT);
-	app.post('/gyms', createGymController.handle);
+	app.post(
+		'/gyms',
+		{ onRequest: [verifyUserRole('ADMIN')] },
+		createGymController.handle,
+	);
 	app.get('/gyms', searchGymsController.handle);
 	app.get('/gyms/nearby', searchNearbyGymsController.handle);
 }

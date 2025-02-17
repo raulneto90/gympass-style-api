@@ -1,4 +1,5 @@
 import { verifyJWT } from '@src/modules/common/interfaces/middlewares/verify-jwt';
+import { verifyUserRole } from '@src/modules/common/interfaces/middlewares/verify-user-role';
 import { FastifyInstance } from 'fastify';
 import { GetCheckinHistoryController } from '../controllers/checkin-history-controller';
 import { CreateCheckinController } from '../controllers/create-checkin-controller';
@@ -13,7 +14,11 @@ const getCheckinHistoryController = new GetCheckinHistoryController();
 export function checkinsRoutes(app: FastifyInstance) {
 	app.addHook('onRequest', verifyJWT);
 	app.post('/gyms/:gymId/check-ins', createCheckinController.handle);
-	app.patch('/check-ins/:checkinId/validate', validateCheckinController.handle);
+	app.patch(
+		'/check-ins/:checkinId/validate',
+		{ onRequest: [verifyUserRole('ADMIN')] },
+		validateCheckinController.handle,
+	);
 	app.get('/check-ins/metrics', getUserCheckinMetricsController.handle);
 	app.get('/check-ins/history', getCheckinHistoryController.handle);
 }

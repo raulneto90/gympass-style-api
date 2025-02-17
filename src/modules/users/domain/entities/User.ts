@@ -6,6 +6,7 @@ interface ConstructorParams {
 	password: string;
 	id?: string;
 	createdAt?: Date;
+	role?: string;
 }
 
 export class User {
@@ -13,13 +14,22 @@ export class User {
 	readonly name: string;
 	readonly email: string;
 	readonly password: string;
+	readonly role: string;
 	readonly createdAt: Date;
 
-	constructor({ name, email, password, id, createdAt }: ConstructorParams) {
+	constructor({
+		name,
+		email,
+		password,
+		id,
+		createdAt,
+		role,
+	}: ConstructorParams) {
 		this.id = id ?? randomUUID();
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.role = role ?? 'MEMBER';
 		this.createdAt = createdAt ?? new Date();
 	}
 }
