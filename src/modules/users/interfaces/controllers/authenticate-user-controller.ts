@@ -20,7 +20,6 @@ export class AuthenticateUserController {
 			{
 				sign: {
 					sub: user.id,
-					expiresIn: env.JWT_EXPIRATION,
 				},
 			},
 		);

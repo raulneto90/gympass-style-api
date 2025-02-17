@@ -3,6 +3,7 @@ import fastifyJwt from '@fastify/jwt';
 import fastify from 'fastify';
 import { ZodError } from 'zod';
 import { env } from './config/environment';
+import { authRoutes } from './modules/authentication/interfaces/routes';
 import { checkinsRoutes } from './modules/check-ins/interfaces/routes';
 import { GlobalError } from './modules/common/errors/global.error';
 import { gymsRoutes } from './modules/gyms/interfaces/routes';
@@ -27,6 +28,7 @@ app.register(fastifyCookie);
 app.register(usersRoutes, { prefix: APP_PREFIX });
 app.register(gymsRoutes, { prefix: APP_PREFIX });
 app.register(checkinsRoutes, { prefix: APP_PREFIX });
+app.register(authRoutes, { prefix: APP_PREFIX });
 app.setErrorHandler((error, _request, reply) => {
 	if (error instanceof ZodError) {
 		return reply.status(400).send({
