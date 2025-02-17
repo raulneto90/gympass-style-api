@@ -25,7 +25,23 @@ export class AuthenticateUserController {
 			},
 		);
 
+		const refreshToken = await reply.jwtSign(
+			{},
+			{
+				sign: {
+					sub: user.id,
+					expiresIn: env.REFRESH_TOKEN_EXPIRATION,
+				},
+			},
+		);
+
 		return reply
+			.setCookie('refreshToken', refreshToken, {
+				httpOnly: true,
+				secure: true,
+				sameSite: true,
+				path: '/',
+			})
 			.code(200)
 			.send({ type: 'Bearer', token, expiresIn: env.JWT_EXPIRATION });
 	}

@@ -1,3 +1,4 @@
+import fastifyCookie from '@fastify/cookie';
 import fastifyJwt from '@fastify/jwt';
 import fastify from 'fastify';
 import { ZodError } from 'zod';
@@ -12,7 +13,16 @@ const APP_PREFIX = '/v1';
 
 app.register(fastifyJwt, {
 	secret: env.JWT_SECRET,
+	cookie: {
+		cookieName: 'refreshToken',
+		signed: false,
+	},
+	sign: {
+		expiresIn: '10m',
+	},
 });
+
+app.register(fastifyCookie);
 
 app.register(usersRoutes, { prefix: APP_PREFIX });
 app.register(gymsRoutes, { prefix: APP_PREFIX });
